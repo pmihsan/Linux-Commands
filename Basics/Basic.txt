@@ -1,0 +1,127 @@
+cat # To read a file and output its content
+
+cd # Change directory
+cd /home # Change dorking directory to home
+cd .. # Change working directory to previous directory
+cd ~  # Change working directory to user's home directory
+
+cp # Copying files
+cp 1.txt 2.txt # Copies 1.txt to 2.txt (if 2.txt exists overwritten)
+cp -i 1.txt 2.txt # Copies 1.txt to 2.txt (if 2.txt exists notifies before overwritten)
+cp -dpr source destination # Copies all the files contained in the source folder
+-d => preserves links
+-p => preserves file attributes
+-r => perform copying recursively
+
+df # Shows disk free space
+df -a # Show free space in human readable format
+
+du # Shows disk usage space
+du -a # Will list files as well as folders
+du -h # Lists file size in human readable format
+du -c # To print total size at the end
+du -d 2 # To specific the depth of the directory 
+du --time # To get results with timestamp last modified
+
+stat # To show the who is the owner of particular file
+
+less # show the output of large files in scorllable in console
+more # Send contents of a file one page at a time to the screen(Similar to less)
+
+ln # To make a link to a file
+ln -s first slink # To make a link called as slink for the file first(soft link)
+
+ls # Listing files in the current directory
+ls -a # Lists hidden files
+ls -R # Lists files recursively within folders
+ls -l # Lists files with more details like who has permission to access, date modified, size and so overwritten
+ls -h # Lists files size in human readable format 
+
+locate # Used to locate a file
+# First we have to call slocate -u so that a database named slocate is created
+# But cron jobs done this in a periodical manner
+locate whois # Searches for the file named whois
+
+logout # Used to logout of the current user session
+
+# Pipeline
+# We can give an output as an input to another command
+# Instead of giving a filename we can give a command output to another command as input
+(eg: ls -al | more)
+# | => This is the pipeline operator
+
+mv # Moving Files(Used for renaming as well)
+mv -i file1 file2
+# Similar to renaming file1 to file2
+
+pwd # Prints the current working directory
+
+shutdown # Used for shutting down the system
+shutdown -h now - # Shuts down immediately
+shutdown -c # To cancel the scheduled shutdown
+shutdown -r now- # Immediately restart the system(reboot)
+
+reboot # Immediately restart the system
+
+whereis # Used for showing the manual, source, and binary files
+whereis ls # Lists where ls binary file exists and also shows the manual
+
+sudo # SuperUser Do 
+# Permits the user to execute command as a super user
+# sudo is to borrow privileges from superusers
+
+su # Enables the user to login to the system as super user
+
+mkdir # Makes directory
+# If directory already exists throws that folder cannot be created
+
+uname # Unix name
+# Gives detailed information about the operating system, kernel and the machine
+
+touch # Used to create a file if and only if it does not exist
+# If file exists timestamp is changed file contents unaffected
+
+cal # Used to display the month of the current date 
+# Can be specified to show a specific month
+(eg: cal 02 2020)
+# Shows the 2nd month(February) of 2020
+
+date # Show the current date and time
+# We can set our date using -set attributes
+date -set"your_date"
+your_date => "21 march 2021 18:50"
+
+truncate # Create a file with specified size
+truncate -s 19MB 1.txt
+
+fallocate # Create a file with specified size
+fallocate -l 19000000 2.txt
+
+type # Used to tell whether a command is built-in or not
+
+alias # Used to set alias for large commands
+alias gpom="git push origin main"
+
+unalias # We can also unalias the aliases
+unalias gpom
+unalias -a # To delete all aliases
+
+eval # Used to evaluate strings into commands
+eval "echo 'hello'"
+
+exec # Used to execute commands or shell files
+
+exit #To exit out of the bash shell or any other
+# We can also use it for specific purpose
+exit sample.sh
+
+export # Used to export shell variable to different or other shell environment
+
+kill # Used to kill a process with process name or process id
+kill pid 
+
+kilall # Used to kill all the processes
+
+ulimit # Used to increase or decrease the priority of a process
+ulimit pid 1
+
