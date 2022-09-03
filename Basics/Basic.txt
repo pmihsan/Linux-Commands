@@ -1,127 +1,395 @@
-cat # To read a file and output its content
+### BASIC COMMANDS
 
-cd # Change directory
-cd /home # Change dorking directory to home
-cd .. # Change working directory to previous directory
-cd ~  # Change working directory to user's home directory
+CAT:
 
-cp # Copying files
-cp 1.txt 2.txt # Copies 1.txt to 2.txt (if 2.txt exists overwritten)
-cp -i 1.txt 2.txt # Copies 1.txt to 2.txt (if 2.txt exists notifies before overwritten)
-cp -dpr source destination # Copies all the files contained in the source folder
--d => preserves links
--p => preserves file attributes
--r => perform copying recursively
+    cat # To read a file and output its content
+    cat > 1.txt
+    > Input operator
+    So we can direct input to 1.txt
 
-df # Shows disk free space
-df -a # Show free space in human readable format
+    cat >> 2.txt
+    >> Append operator
+    The above one remove the content and adds the text
+    This append operator appends the text
 
-du # Shows disk usage space
-du -a # Will list files as well as folders
-du -h # Lists file size in human readable format
-du -c # To print total size at the end
-du -d 2 # To specific the depth of the directory 
-du --time # To get results with timestamp last modified
+    cat 1.txt 2.txt ...
+    # We can use cat to display multiple files at any single time
 
-stat # To show the who is the owner of particular file
+CD: 
 
-less # show the output of large files in scorllable in console
-more # Send contents of a file one page at a time to the screen(Similar to less)
+    cd # Change directory
+    cd /home # Change dorking directory to home
+    cd .. # Change working directory to previous directory
+    cd ~  # Change working directory to user's home directory
 
-ln # To make a link to a file
-ln -s first slink # To make a link called as slink for the file first(soft link)
+CP:
 
-ls # Listing files in the current directory
-ls -a # Lists hidden files
-ls -R # Lists files recursively within folders
-ls -l # Lists files with more details like who has permission to access, date modified, size and so overwritten
-ls -h # Lists files size in human readable format 
+    cp # Copying files
+    cp 1.txt 2.txt # Copies 1.txt to 2.txt (if 2.txt exists overwritten)
+    cp -i 1.txt 2.txt # Copies 1.txt to 2.txt (if 2.txt exists notifies before overwritten)
+    cp -dpr source destination # Copies all the files contained in the source folder
+    -d => preserves links
+    -p => preserves file attributes
+    -r => perform copying recursively
 
-locate # Used to locate a file
-# First we have to call slocate -u so that a database named slocate is created
-# But cron jobs done this in a periodical manner
-locate whois # Searches for the file named whois
+DF:
 
-logout # Used to logout of the current user session
+    df # Shows disk free space
+    df -a # Show free space in human readable format
 
-# Pipeline
-# We can give an output as an input to another command
-# Instead of giving a filename we can give a command output to another command as input
-(eg: ls -al | more)
-# | => This is the pipeline operator
+DU:
 
-mv # Moving Files(Used for renaming as well)
-mv -i file1 file2
-# Similar to renaming file1 to file2
+    du # Shows disk usage space
+    du -a # Will list files as well as folders
+    du -h # Lists file size in human readable format
+    du -c # To print total size at the end
+    du -d 2 # To specific the depth of the directory 
+    du --time # To get results with timestamp last modified
 
-pwd # Prints the current working directory
+STAT:
 
-shutdown # Used for shutting down the system
-shutdown -h now - # Shuts down immediately
-shutdown -c # To cancel the scheduled shutdown
-shutdown -r now- # Immediately restart the system(reboot)
+    stat # To show the who is the owner of particular file
 
-reboot # Immediately restart the system
+LESS:
 
-whereis # Used for showing the manual, source, and binary files
-whereis ls # Lists where ls binary file exists and also shows the manual
+    less # show the output of large files in scorllable in console
 
-sudo # SuperUser Do 
-# Permits the user to execute command as a super user
-# sudo is to borrow privileges from superusers
+MORE:
 
-su # Enables the user to login to the system as super user
+    more # Send contents of a file one page at a time to the screen(Similar to less)
 
-mkdir # Makes directory
-# If directory already exists throws that folder cannot be created
+LN:
 
-uname # Unix name
-# Gives detailed information about the operating system, kernel and the machine
+    ln # To make a link to a file
+    ln -s first slink # To make a link called as slink for the file first(soft link)
 
-touch # Used to create a file if and only if it does not exist
-# If file exists timestamp is changed file contents unaffected
+LS:
 
-cal # Used to display the month of the current date 
-# Can be specified to show a specific month
-(eg: cal 02 2020)
-# Shows the 2nd month(February) of 2020
+    ls # Listing files in the current directory
+    ls -a # Lists hidden files
+    ls -R # Lists files recursively within folders
+    ls -l # Lists files with more details like who has permission to access, date modified, size and so overwritten
+    ls -h # Lists files size in human readable format 
 
-date # Show the current date and time
-# We can set our date using -set attributes
-date -set"your_date"
-your_date => "21 march 2021 18:50"
+LOCATE:
 
-truncate # Create a file with specified size
-truncate -s 19MB 1.txt
+    locate # Used to locate a file
+    # First we have to call slocate -u so that a database named slocate is created
+    # But cron jobs done this in a periodical manner
+    locate whois # Searches for the file named whois
 
-fallocate # Create a file with specified size
-fallocate -l 19000000 2.txt
+FIND:
 
-type # Used to tell whether a command is built-in or not
+    find # Used to search for a file or folder in the specified directory
+    find Folder/ # searches for the folder in the current directory
+    find file # searches for the file in the current directory
 
-alias # Used to set alias for large commands
-alias gpom="git push origin main"
+    find -type f -name '1.txt' # Searches for the file with name 1.txt
+    find -type d -name 'files' # searches for the directory with name files
 
-unalias # We can also unalias the aliases
-unalias gpom
-unalias -a # To delete all aliases
+GREP:
 
-eval # Used to evaluate strings into commands
-eval "echo 'hello'"
+    grep # Searches for a particular text or a pattern specified through a regular expression
+    grep 'Hello World' file.txt # Matches the text in the file
+    -i => For case insensitive search
+    -n => Returns the line number in which the text or pattern found
+    -c => Returns how many time the pattern or the text occured in the file 
+    -o => return only the pattern this is matched
 
-exec # Used to execute commands or shell files
+OPERATORS:
 
-exit #To exit out of the bash shell or any other
-# We can also use it for specific purpose
-exit sample.sh
+    # Pipeline
+    # We can give an output as an input to another command
+    # Instead of giving a filename we can give a command output to another command as input
+    (eg: ls -al | more)
+    # | => This is the pipeline operator
 
-export # Used to export shell variable to different or other shell environment
+MV:
 
-kill # Used to kill a process with process name or process id
-kill pid 
+    mv # Moving Files(Used for renaming as well)
+    mv -i file1 file2
+    # Similar to renaming file1 to file2
 
-kilall # Used to kill all the processes
+PWD:
 
-ulimit # Used to increase or decrease the priority of a process
-ulimit pid 1
+    pwd # Prints the current working directory
 
+LOGOUT:
+
+    logout # Used to logout of the current user session
+
+SHUTDOWN:
+
+    shutdown # Used for shutting down the system
+    shutdown -h now - # Shuts down immediately
+    shutdown -c # To cancel the scheduled shutdown
+    shutdown -r now- # Immediately restart the system(reboot)
+
+REBOOT:
+    reboot # Immediately restart the system
+
+WHEREIS:
+
+    whereis # Used for showing the manual, source, and binary files
+    whereis ls # Lists where ls binary file exists and also shows the manual
+
+SUDO:
+
+    sudo # SuperUser Do 
+    # Permits the user to execute command as a super user
+    # sudo is to borrow privileges from superusers
+
+    su # Enables the user to login to the system as super user
+
+MKDIR:
+    mkdir # Makes directory
+    # If directory already exists throws that folder cannot be created
+
+RM:
+
+    rm # For removing files 
+    rm 1.txt # Removes file 1.txt
+    rm -rf Folder/  # Used to recursively remove files with force
+    rmdir # Removes Empty Folder
+    rmdir Folder/
+
+DIFF:
+
+    diff # Used to compare contents of two files line by line and prints out the line that doesn't match
+
+HEAD:
+
+    head # Used to get the top first 10 lines of the file
+    head file.txt # displays the first 10 lines
+    head -n 20 file.txt 
+    -n => We can specify the no of lines to get from head command
+
+TAIL:
+
+    tail # Used to get the last 10 lines of the file
+    tail file.txt # displays the last 10 lines
+    tail -n 20 file.txt 
+    -n => We can specify the no of lines to get from tail command
+
+UNAME:
+
+    uname # Unix name
+    # Gives detailed information about the operating system, kernel and the machine
+
+TOUCH:
+
+    touch # Used to create a file if and only if it does not exist
+    # If file exists timestamp is changed file contents unaffected
+
+CAL:
+    cal # Used to display the month of the current date 
+    # Can be specified to show a specific month
+    (eg: cal 02 2020)
+    # Shows the 2nd month(February) of 2020
+
+DATE:
+
+    date # Show the current date and time
+    # We can set our date using -set attributes
+    date -set"your_date"
+    your_date => "21 march 2021 18:50"
+
+TRUNCATE:
+
+    truncate # Create a file with specified size
+    truncate -s 19MB 1.txt
+
+FALLOCATE:
+
+    fallocate # Create a file with specified size
+    fallocate -l 19000000 2.txt
+
+TYPE:
+
+    type # Used to tell whether a command is built-in or not
+
+ALIAS:
+
+    alias # Used to set alias for large commands
+    alias gpom="git push origin main"
+
+UNALIAS:
+
+    unalias # We can also unalias the aliases
+    unalias gpom
+    unalias -a # To delete all aliases
+
+EVAL:
+
+    eval # Used to evaluate strings into commands
+    eval "echo 'hello'"
+
+EXEC:
+
+    exec # Used to execute commands or shell files
+
+EXIT:
+
+    exit #To exit out of the bash shell or any other
+    # We can also use it for specific purpose
+    exit sample.sh
+
+EXPORT:
+
+    export # Used to export shell variable to different or other shell environment
+
+JOBS:
+
+    jobs # To display the current jobs that are running
+    # Jobs are basically processes started by shell
+
+KILL:
+
+    kill # Used to kill a process with process name or process id
+    kill -9 pid  # SIGTERM # For Terminating the process
+    kill -15 pid # SIGKILL # For Killing the process
+    kill -L # List the available signal choices in a nice table
+
+    SIGHUP/HUP/1 -> hang up
+    SIGINT/INT/2 -> Interrupt, eg-ctrl+c
+    SIGKILL/KILL/9 -> kill
+    SIGSEGV/SEGV/11 -> segmentation fault, means trying to access process although it doesn't have permission to. eg- cat /etc/shadow
+    SIGTERM/TERM/15 -> terminate
+    SIGSTOP/STOP/19 -> Stop, suspend any program for some time, and then resumes it.
+
+    # Out of the above the most commonly used ones are
+    SIGTERM (15) — requests a program to stop running and gives it some time to save all of its progress. If you don’t specify the signal when entering the kill command, this signal will be used.
+    SIGKILL (9) — forces programs to stop immediately. Unsaved progress will be lost.
+
+KILLALL:
+
+    kilall # Used to kill all the processes
+
+ULIMIT:
+
+    ulimit # Used to increase or decrease the priority of a process
+    ulimit pid 1
+
+TAR:
+
+    tar # Commonly used to archive multiple files into a tar file
+    tar -cf 1.rar Folder/ # Used to archive a folder to a rar file (or zip as well)
+    -c => create flag
+    -f => create file archive with the specified name
+
+    tar -xf 1.rar # To extract the archive file
+
+CHMOD:
+
+    chmod # To change user permissions (or change or modify)
+    Here 
+    u => user
+    g => groups
+    o => others
+
+    chmod ugo+rwx file.txt
+    # Here we are adding rwx permissions to user groups and other
+    # r => read
+    # w => write
+    # x => execute
+    # Similarly use (-) to remove user permissions
+
+    # We can also use number to specify permissions
+    4 => read(r)
+    2 => write(w)
+    1 => execute(x)
+    0 => no permissions
+
+    1 + 2 + 4 = 7
+    chmod 777 file.txt
+    # Here we ar giving rwx permissions to ugo(three 7's)
+    # We can also use combinations like
+    1 + 2 => write and execute
+    2 + 4 => read and write
+    4 + 1 => read and execute
+
+CHOWN:
+
+    chown # To chage the user ownership for a file
+    chown user2 file.txt
+    # To change the owner ship of the file file.txt to user2
+
+TOP:
+
+    top # Used to display the running processess
+    # How much does the memory and cpu utilized
+
+HISTORY:
+
+    history # Give us the list of commands we have typed so far
+
+MAN:
+
+    man # Used for accessing the manual page of any command
+
+HOSTNAME:
+
+    hostname # Gives us the hostname of the specified device
+
+USERADD:
+
+    useradd # used to add users to the command
+    useradd user2 # Adds user2 to the system
+
+USERDEL:
+
+    userdel # Used to delete users from the system
+    userdel user1 # Deletes user1 from the system 
+
+PASSWD:
+
+    passwd # Used to set apawwd to the specified user
+    passwd user2 # Ask for a passwd to set to user (user2)
+
+PS:
+
+    ps # List the processes that are currently running in the system
+    # Gives us the PID, command executed and total CPU time
+    # And which tty(teleTypewriter) user is using
+
+    ps aux # Show a detailed view of the process
+    a => all the processes that are running in the system
+    u => more details about the process
+    x => list down all the processes that don't have terminal/tty associated with it
+
+    # Various States of processess
+    R -> process is running
+    S -> Interruptable sleep i.e waiting for some event. eg- waiting for input from the user
+    D -> Uninterruptable sleep, processes that cannot be killed in such case just reboot the system
+    Z -> Zombies, waiting for the wait call status
+    T -> Stopped
+
+
+
+### NETWORKING COMMANDS
+
+WGET:
+
+    wget # Download files from the internet
+    wget https://...
+
+CURL:
+
+    curl # Download files from the internet
+    curl https://...
+
+IP:
+
+    ip # To get th host's ip address
+    ip addr # Gives the config details of all network adapters in the device
+
+PING:
+
+    ping - send ICMP ECHO_REQUEST to network hosts
+
+    ping # To check for connectivity of our machine to target ip address
+    ping google.com # Toc check out connectivity to google
+    ping 192.168.1.5 # We can specify ip address as well
+    -4 => Use IPV4 only
+    -6 => Use IPV6 only
+    -c => To specify the number of packets 
