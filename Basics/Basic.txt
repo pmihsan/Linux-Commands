@@ -35,7 +35,8 @@ CP:
 DF:
 
     df # Shows disk free space
-    df -a # Show free space in human readable format
+    df -h # Show free space in human readable format
+    -m => Displays free storage in megabytes
 
 DU:
 
@@ -102,7 +103,14 @@ OPERATORS:
     # We can give an output as an input to another command
     # Instead of giving a filename we can give a command output to another command as input
     (eg: ls -al | more)
-    # | => This is the pipeline operator
+    | => This is the pipeline operator
+
+    # Redirections
+    
+    > # Represents output redirection and redirects output to a file and overwriting the file
+    >> # Redirects output to a file and appends the redirected output rather than overwrites
+    < # Represents input redirection and redirects the given input file
+    << # Launch a file and and captures user input until EOF
 
 MV:
 
@@ -126,6 +134,7 @@ SHUTDOWN:
     shutdown -r now- # Immediately restart the system(reboot)
 
 REBOOT:
+
     reboot # Immediately restart the system
 
 WHEREIS:
@@ -142,6 +151,7 @@ SUDO:
     su # Enables the user to login to the system as super user
 
 MKDIR:
+
     mkdir # Makes directory
     # If directory already exists throws that folder cannot be created
 
@@ -182,6 +192,7 @@ TOUCH:
     # If file exists timestamp is changed file contents unaffected
 
 CAL:
+
     cal # Used to display the month of the current date 
     # Can be specified to show a specific month
     (eg: cal 02 2020)
@@ -238,6 +249,10 @@ EXPORT:
 
     export # Used to export shell variable to different or other shell environment
 
+ENV:
+
+    env # Displays the enviroment variables
+
 JOBS:
 
     jobs # To display the current jobs that are running
@@ -263,7 +278,7 @@ KILL:
 
 KILLALL:
 
-    kilall # Used to kill all the processes
+    killall # Used to kill all the processes
 
 ULIMIT:
 
@@ -277,7 +292,10 @@ TAR:
     -c => create flag
     -f => create file archive with the specified name
 
-    tar -xf 1.rar # To extract the archive file
+    tar -xvf 1.rar # To extract the archive file
+    -x => includes the eXtended attributes of the files (metadata)
+    -v => is verbose mode
+    -f => tells tar what file/archive you are unarchiving
 
 CHMOD:
 
@@ -311,8 +329,8 @@ CHMOD:
 CHOWN:
 
     chown # To chage the user ownership for a file
-    chown user2 file.txt
-    # To change the owner ship of the file file.txt to user2
+    chown user2 file.txt # To change the owner ship of the file file.txt to user2
+    chown -R user:group directory/ # To change the ownership of a directory to user
 
 TOP:
 
@@ -329,7 +347,10 @@ MAN:
 
 HOSTNAME:
 
-    hostname # Gives us the hostname of the specified device
+    hostname # Gives us the hostname of the specified device(displays the name of the computer)
+    -i => To get the ip address of the host
+    -I => To get all the ip address of the host
+    -s => Display the short host name
 
 USERADD:
 
@@ -364,18 +385,40 @@ PS:
     Z -> Zombies, waiting for the wait call status
     T -> Stopped
 
+PSTREE:
+
+    pstree # Display a tree of processes 
+    -a => To show command line arguments
+    -A => Use ASCII Characters to draw tree
+    -c => Disable compaction of identical trees
+    -s => Show parent processes of the specified process
+    -T => Hides threads and show only processes 
+
+GPG:
+
+    gpg # To encrypt a file
+    gpg -c file.txt # Encrypts a file with a passphrase
+    gpg file.txt.gpg # Decrupts the file
+
+WC:
+    wc # Word count
+    wc file.txt # Count the number of lines, words and characters of a file
+    -l => Gives us the line count
+    -w => Gives us the word count
+    -c => Gives us the byte count
+    -m => print the character count
 
 
 ### NETWORKING COMMANDS
 
 WGET:
 
-    wget # Download files from the internet
+    wget # Download files from the internet from a server
     wget https://...
 
 CURL:
 
-    curl # Download files from the internet
+    curl # Used for transferring data from or to a server without user interaction
     curl https://...
 
 IP:
@@ -385,7 +428,7 @@ IP:
 
 PING:
 
-    ping - send ICMP ECHO_REQUEST to network hosts
+    ping # Send ICMP ECHO_REQUEST to network hosts
 
     ping # To check for connectivity of our machine to target ip address
     ping google.com # Toc check out connectivity to google
@@ -393,3 +436,49 @@ PING:
     -4 => Use IPV4 only
     -6 => Use IPV6 only
     -c => To specify the number of packets 
+    -s => To set the size of the data carried by the ICMP echo request 
+
+TRACEROUTE:
+
+    traceroute # Traces the route taken by the packets from your system to another host
+    traceroute 192.168.1.1
+    traceroute google.com
+    -h => To specify the maximum number of hops
+    -m => To specify the maximum time to live
+    -v => To get a verbose output
+    -w => To specify the wait time(time to wait for response)
+    -n => For no dns name resolution
+
+ARP:
+    
+    arp # Address Resolution Protocol
+    arp # Manipulate system arp cache
+    -v => Gives us a verbose output
+    -n => Gives us numerical address instead of host or username
+    -a => Use alternate BSD style output format(with no fixed columns)
+    -e => Use default Linux style output format(with fixed columns)
+
+IFCONFIG:
+
+    ifconfig # To configure a network interface
+    ifconfig # Gives us the ip and mac address
+    up => Enables the specified interface
+    down => Disables the specified interface
+    -a => Displays all interfaces which are available
+    -s => Displays a short list about the network interfaces
+    -v => Gives us a verbose output about the network interfaces
+
+NETSTAT:
+
+    netstat # Display which ports are active on your machine, their status, and what they're connected to
+    netstat # Print network connections, routing tables, interface statistics
+
+SSH:
+
+    ssh # Secure shell
+    ssh 192.168.1.1 # Secure connect to a remote host
+    ssh user@192.168.1.1 # Connect to a user at 192.168.1.1 (ssh default port - 22)
+    ssh user@192.168.1.1 [command] # It executes the command specified on the remote host
+    ssh -i ~/.ssh/specific_ssh_fkey # Specify other ssh key for connection
+    -p => To specify any other port(if not the default)
+    
