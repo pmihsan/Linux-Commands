@@ -473,6 +473,24 @@ NETSTAT:
     netstat # Display which ports are active on your machine, their status, and what they're connected to
     netstat # Print network connections, routing tables, interface statistics
 
+
+NETCAT:
+    
+    ON CLIENT:
+
+        nc 192.168.1.2 1234
+
+    ON SERVER:
+
+        nc -vnlp 1234
+
+        -l	Listen mode
+        -p	Specify the Port number
+        -n	Numeric only; no resolution of hostnames via DNS
+        -v	Verbose output (optional, yet useful to discover any bugs)
+        -vv	Very Verbose (optional)
+        -k	Keep listening after client disconnects
+
 SSH:
 
     ssh # Secure shell
